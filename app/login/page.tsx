@@ -1,6 +1,8 @@
 "use client";
 
 import { supabase } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function LoginPage() {
 
@@ -12,6 +14,17 @@ export default function LoginPage() {
       },
     });
   };
+  const router = useRouter();
+
+useEffect(() => {
+  const check = async () => {
+    const { data } = await supabase.auth.getSession();
+    if (data.session) {
+      router.replace("/");
+    }
+  };
+  check();
+}, [router]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
