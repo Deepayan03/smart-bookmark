@@ -12,11 +12,11 @@ const BookmarkList = dynamic(() => import("./BookmarkList"), {
 });
 
 type Props = {
-  initialData: Bookmark[];
+  initialData?: Bookmark[];
 };
 
 export default function BookmarkBoard({ initialData }: Props) {
-  const [bookmarks, setBookmarks] = useState<Bookmark[]>(initialData);
+const [bookmarks, setBookmarks] = useState<Bookmark[]>(initialData ?? []);
   const [open, setOpen] = useState<boolean>(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
